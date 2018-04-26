@@ -17,7 +17,7 @@ def buildhash(ctx):
 
     git_cmd = 'git rev-parse --short HEAD'
     commit_short_hash = ctx.run(git_cmd, shell=CMD_EXE_PATH).stdout.rstrip('\n')
-    with open('ntsparser/buildhash.py', mode='w') as f:
+    with open('supergrep/buildhash.py', mode='w') as f:
         f.write(dedent('''\
             """Build-time constants"""
             commit_short_hash = "{}"
@@ -28,7 +28,7 @@ def buildhash(ctx):
 def topyx(ctx):
     """Rename all modules to cython modules"""
 
-    for file in glob.glob('ntsparser/**/*.py', recursive=True):
+    for file in glob.glob('supergrep/**/*.py', recursive=True):
         if not file.endswith('__.py'):
             pyx_file = '{}.pyx'.format(os.path.splitext(file)[0])
             os.rename(file, pyx_file)
@@ -38,7 +38,7 @@ def topyx(ctx):
 def topy(ctx):
     """Rename back from cython modules to python ones"""
 
-    for file in glob.glob('ntsparser/**/*.pyx', recursive=True):
+    for file in glob.glob('supergrep/**/*.pyx', recursive=True):
         py_file = '{}.py'.format(os.path.splitext(file)[0])
         os.rename(file, py_file)
 
@@ -54,7 +54,7 @@ def cleanup(ctx):
 
     for file in chain.from_iterable(
             glob.glob(pattern, recursive=True) for pattern
-            in ('ntsparser/**/*.c', 'ntsparser/**/*.pyd')):
+            in ('supergrep/**/*.c', 'supergrep/**/*.pyd')):
         os.remove(file)
 
 
@@ -62,4 +62,4 @@ def cleanup(ctx):
 def pyinstaller(ctx):
     """Call pyinstaller to create final exe"""
 
-    ctx.run('pyinstaller --dist=build ntsparser.spec', shell=CMD_EXE_PATH)
+    ctx.run('pyinstaller --dist=build supergrep.spec', shell=CMD_EXE_PATH)

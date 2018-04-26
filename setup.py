@@ -5,4 +5,4 @@ from Cython.Build import cythonize
 
 
 setup(
-    ext_modules=cythonize('ntsparser/**/*.pyx'))
+    ext_modules=cythonize('supergrep/**/*.pyx'))
