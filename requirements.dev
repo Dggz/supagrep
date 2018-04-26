@@ -1,0 +1,3 @@
+-r requirements
+git+git://github.com/PyCQA/pylint.git@07662129d7eb3ee13e60c4fb08099db152c72912#egg=pylint
+git+git://github.com/python/mypy.git@f3fb6b4667c5e30b356ea133ce9fb0ed420cb7af#egg=mypy

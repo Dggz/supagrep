@@ -1,0 +1,8 @@
+openpyxl==2.4.8
+cytoolz==0.8.2
+textfsm==0.3.2
+invoke==0.20.4
+Cython==0.26.1
+PyInstaller==3.2.1
+pycryptodome==3.4.7
+xmltodict==0.11.0
