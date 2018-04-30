@@ -1,7 +1,5 @@
 """Main module of application"""
-# pylint: disable=no-name-in-module, redefined-builtin
 
-import fileinput
 from logging import getLogger
 from typing import Any
 
@@ -14,15 +12,6 @@ logger = getLogger(__name__)
 def show_banner() -> None:
     """Display banner with version and copyright info and log build date"""
     print(settings.title)
-
-
-def get_input(files: Any) -> str:
-    """Return input from multiple files given as args in cmdline
-
-    :param files:
-    :return:
-    """
-    return ''.join(fileinput.input(files=files))
 
 
 def main(argv: Any) -> Any:

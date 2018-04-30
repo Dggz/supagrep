@@ -11,6 +11,7 @@ from supergrep.three_par import three_par
 from supergrep.vmax import vmax
 from supergrep.vnx import vnx
 from supergrep.xiv import xiv
+from supergrep.parse import parse
 from supergrep.xtremio import xtremio
 
 
@@ -22,9 +23,8 @@ def build_parser() -> argparse.ArgumentParser:
     """
     parser = argparse.ArgumentParser(prog=settings.prog_name)
     parser.add_argument(
-        '-a', '--array',
-        help='specifies which parsers will be invoked '
-             '(vnx, vmax, xtremio, celerra, 3par, isilon, ibmds, xiv, eva)')
+        '-t', '--templates',
+        help='specifies which parsers will be invoked')
     parser.add_argument(
         '-i', '--input-files', help='paths to input files', nargs='+')
     parser.add_argument('-o', '--output-file', help='path to output file')
@@ -46,20 +46,23 @@ def parse_args(argv: Any) -> tuple:
         'ibmds': ibmds.main,
         'isilon': isilon.main,
         'xiv': xiv.main,
-        'eva': eva.main
+        'eva': eva.main,
+        'parse': parse.main
     }
     parser = build_parser()
     options = vars(parser.parse_args(argv))
     input_files = options.pop('input_files')
-    if 'array' not in options:
+    if 'templates' not in options:
         parser.exit(1, parser.format_help())
     if 'output_file' not in options:
         parser.exit(1, parser.format_help())
     output_file = options.pop('output_file')
-    command = options.pop('array')
+    command = options.pop('templates')
     if command in array_options:
         func = array_options[command]
     else:
         parser.exit(1, parser.format_help())
 
-    return func, input_files, output_file
+    # print(options['templates'])
+    func = array_options['parse']
+    return func, options.pop('templates'), input_files, output_file
