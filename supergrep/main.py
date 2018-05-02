@@ -21,8 +21,8 @@ def main(argv: Any) -> Any:
     :return:
     """
     show_banner()
-    func, input_files, output_file = parse_args(argv[1:])
+    func, template, input_files, output_file = parse_args(argv[1:])
     if not output_file.endswith('.xlsx'):
         logger.error('output filename should end with .xlsx')
         return 1
-    func(input_files, output_file)
+    func(template, input_files, output_file)
