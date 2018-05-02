@@ -34,7 +34,8 @@ def main(template: Any, input_files: str, output_file: str) -> None:
 
 
     extracted_data = run_parser_over(data, temp_data['temp']['template'])
-
+    fname = run_parser_over(data, temp_data['temp']['fname'])
+    sheet = run_parser_over(data, temp_data['temp']['sheet'])
     # raw_content = load_raw_content(tuple(input_files), raw_content_patterns)
 
     # import ipdb; ipdb.set_trace()
