@@ -25,17 +25,17 @@ def main(template: Any, input_files: str, output_file: str) -> None:
         '*cmd_outputs/hostname',
     )
     # import ipdb; ipdb.set_trace()
-
     with open(template, 'r') as temp:
-        temp_data = xmltodict.parse(''.join(temp.readlines()))
-
+        temp_data = xmltodict.parse(''.join(temp.readlines()))['temp']
+    import ipdb; ipdb.set_trace()
     with open(input_files[0], 'r') as inp:
         data = ''.join(inp.readlines())
 
 
-    extracted_data = run_parser_over(data, temp_data['temp']['template'])
-    fname = run_parser_over(data, temp_data['temp']['fname'])
-    sheet = run_parser_over(data, temp_data['temp']['sheet'])
+    extracted_data = run_parser_over(data, temp_data['template'])
+    fname = temp_data['fname']
+    sheet = temp_data['sheet']
+    import ipdb; ipdb.set_trace()
     # raw_content = load_raw_content(tuple(input_files), raw_content_patterns)
 
     # import ipdb; ipdb.set_trace()

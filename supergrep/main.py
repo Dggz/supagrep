@@ -14,6 +14,20 @@ def show_banner() -> None:
     print(settings.title)
 
 
+# def main(argv: Any) -> Any:
+#     """Console application entry point
+#
+#     :param argv: sys.argv
+#     :return:
+#     """
+#     show_banner()
+#     func, input_files, output_file = parse_args(argv[1:])
+#     if not output_file.endswith('.xlsx'):
+#         logger.error('output filename should end with .xlsx')
+#         return 1
+#     func(input_files, output_file)
+
+
 def main(argv: Any) -> Any:
     """Console application entry point
 
