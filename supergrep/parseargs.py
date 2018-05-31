@@ -23,9 +23,14 @@ def build_parser() -> argparse.ArgumentParser:
     :rtype: argparse.ArgumentParser
     """
     parser = argparse.ArgumentParser(prog=settings.prog_name)
+    # parser.add_argument(
+    #     '-m', '--module',
+    #     help='specifies which module will run (single, multiple)'
+    #          'single being one template, one input file type, one output sheet')
     parser.add_argument(
         '-t', '--templates',
-        help='specifies which parsers will be invoked')
+        help='Template files have to be xml format, <sgr> tag on first level,'
+             '<fname>, <sheet>, <template> tags on second level', nargs='+')
     parser.add_argument(
         '-i', '--input-files', help='paths to input files', nargs='+')
     parser.add_argument('-o', '--output-file', help='path to output file')

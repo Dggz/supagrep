@@ -1,4 +1,4 @@
-<temp>
+<sgr>
 <fname>
 *bgp*
 </fname>
@@ -20,7 +20,6 @@ Value Damped_V6 (\d+)
 Value Status ([a-zA-Z]+)
 
 Start
-  # New format IPv4 and IPv6 split across newlines.
   ^\s+inet.0: ${Active_V4}/${Received_V4}/${Damped_V4}
   ^\s+inet6.0: ${Active_V6}/${Received_V6}/${Damped_V6}
   ^ -> Continue.Record
@@ -29,4 +28,4 @@ Start
   ^${RemoteIP}\s+${RemoteAS}(\s+\d+){4}\s+${Uptime}\s+${Active_V4}/${Received_V4}/${Accepted_V4}/${Damped_V4}\s+${Active_V6}/${Received_V6}/${Accepted_V6}/${Damped_V6} -> Next.Record
   ^${RemoteIP}\s+${RemoteAS}(\s+\d+){4}\s+${Uptime}\s+${Status} -> Next.Record
 </template>
-</temp>
+</sgr>

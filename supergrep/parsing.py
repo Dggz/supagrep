@@ -8,6 +8,7 @@ from typing import List, Generator, Union, IO, Iterable
 from zipfile import ZipFile
 
 import textfsm
+import xmltodict
 
 from supergrep.utils import pattern_filter, tar_pattern_filter
 
@@ -164,3 +165,19 @@ def raw_gz_content(input_files: tuple) -> Iterable:
         else:
             raw_content.append(get_files_from_gz(input_file))
     return raw_content
+
+
+def get_template_sheets(template_files: list) -> dict:
+    """
+
+    :param template_files:
+    :return:
+    """
+    temp_sheets = dict()  # type: dict
+    for tfile in template_files:
+        with open(tfile, 'r') as txml:
+            temp_data = xmltodict.parse(''.join(txml.readlines()))['sgr']
+        temp_sheets[temp_data['sheet']]['template'] = temp_data['template']
+        temp_sheets[temp_data['sheet']]['fname'] = temp_data['fname']
+
+    return temp_sheets
